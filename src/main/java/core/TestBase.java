@@ -17,7 +17,7 @@ public class TestBase {
     @BeforeClass
     public void initDriver(){
        DriverFactory driverFactory = new DriverFactory();
-       driver = driverFactory.getDriver();
+       driver = driverFactory.getRemoteWebDriver();
     }
 
     @AfterClass
