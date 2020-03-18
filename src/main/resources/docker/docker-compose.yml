@@ -1,21 +1,41 @@
-selenium-hub:
-  restart: always
-  image: selenium/hub:latest
-  ports:
-    - "4444:4444"
-#selenium-chrome
-selenium-chrome:
-  restart: always
-  image: selenium/node-chrome-debug:latest
-  ports:
-    - 5900
-  links:
-    - selenium-hub:hub
-#selenium-firefox
-selenium-firefox:
-  restart: always
-  image: selenium/node-firefox-debug:latest
-  ports:
-    - 5900
-  links:
-    - selenium-hub:hub
+version: '2.2'
+services:
+  jenkins:
+    build:
+      context: .
+      dockerfile: dockerfile
+    ports:
+      - '80:8080'
+      - '443:8443'
+      - '50000:50000'
+    volumes:
+      - '/Users/duttas/docker_volume/jenkins-data:/var/jenkins_home'
+
+  selenium-hub:
+    restart: always
+    image: selenium/hub:latest
+    ports:
+      - "4444:4444"
+  #selenium-chrome
+  selenium-chrome:
+    restart: always
+    image: selenium/node-chrome-debug:latest
+    ports:
+      - 5900
+    environment:
+      HUB_HOST: selenium-hub
+#    links:
+#      - selenium-hub:hub
+  #selenium-firefox
+  selenium-firefox:
+    restart: always
+    image: selenium/node-firefox-debug:latest
+    ports:
+      - 5900
+    environment:
+      HUB_HOST: selenium-hub
+#    links:
+#      - selenium-hub:hub
+volumes:
+  jenkins_data:
+
