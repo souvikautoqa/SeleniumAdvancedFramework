@@ -36,7 +36,7 @@ public class DriverFactory {
         try{
             String browser = TestConfig.getBrowser();
             DesiredCapabilities desiredCapabilities = null;
-            URL url = new URL("http://0.0.0.0:4444/wd/hub");
+            URL url = new URL("http://172.19.0.3:4444/wd/hub");
             if(browser.equalsIgnoreCase("chrome")){
                 desiredCapabilities = DesiredCapabilities.chrome();
             }else if(browser.equalsIgnoreCase("firefox")){
