@@ -15,9 +15,10 @@ public class TestBase {
     }
 
     @BeforeClass
-    public void initDriver(){
+    public void initDriver() throws InterruptedException {
        DriverFactory driverFactory = new DriverFactory();
        driver = driverFactory.getRemoteWebDriver();
+       Thread.sleep(10000);
     }
 
     @AfterClass
