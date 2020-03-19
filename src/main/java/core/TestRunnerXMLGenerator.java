@@ -25,6 +25,7 @@ public class TestRunnerXMLGenerator implements IAlterSuiteListener {
 
         Map<String,String> suiteParams = new HashMap<>();
         suiteParams.put("parallel","classes");
+        suiteParams.put("thread-count","5");
 
         //Add any parameters that you want to set to the Test.
         xmlTest.setParameters(testngParams);
