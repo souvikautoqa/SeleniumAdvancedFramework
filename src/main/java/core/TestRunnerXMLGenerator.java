@@ -23,6 +23,9 @@ public class TestRunnerXMLGenerator implements IAlterSuiteListener {
         testngParams.put("browser",TestConfig.getBrowser());
         testngParams.put("env",TestConfig.getEnv());
 
+        Map<String,String> suiteParams = new HashMap<>();
+        suiteParams.put("parallel","classes");
+
         //Add any parameters that you want to set to the Test.
         xmlTest.setParameters(testngParams);
 
@@ -34,6 +37,7 @@ public class TestRunnerXMLGenerator implements IAlterSuiteListener {
             listTestClasses.add(new XmlClass(clazz.getCanonicalName()));
         }
         xmlTest.setXmlClasses(listTestClasses);
+        suite.setParameters(suiteParams);
     }
 
 }
