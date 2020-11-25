@@ -9,7 +9,7 @@ services:
       - '443:8443'  #tcp port mapping
       - '50000:50000' # api port mapping
     volumes:
-      - '/Users/souvi/Docker_Volume/jenkins-data:/var/jenkins_home'
+      - 'C:\Users\souvi\Docker_Volume\jenkins-data:/var/jenkins_home'
 
   selenium-hub:
     restart: always
