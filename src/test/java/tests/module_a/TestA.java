@@ -8,11 +8,13 @@ public class TestA extends TestBase {
     @Test
     public void TC001(){
         System.out.println("Test A -- TC001");
+        driver().get("https://amazon.co.uk");
     }
 
     @Test
     public void TC002(){
         System.out.println("Test A -- TC002");
+        driver().get("https://www.rentalcars.com/");
     }
 
 

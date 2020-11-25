@@ -1,19 +1,17 @@
-package tests.module_b;
+package tests.module_c;
 
 import core.TestBase;
 import org.testng.annotations.Test;
 
-public class TestC extends TestBase {
+public class TestE extends TestBase {
 
     @Test
     public void TC001(){
         System.out.println("Test C -- TC001");
-        driver().get("https://myntra.com");
     }
 
     @Test
     public void TC002(){
         System.out.println("Test C -- TC002");
-        driver().get("https://wizdomqa.com");
     }
 }
