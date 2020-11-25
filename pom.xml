@@ -54,6 +54,8 @@
                 <environmentVariables>
                     <env>${env}</env>
                     <browser>${browser}</browser>
+                    <runtype>${runtype}</runtype>
+                    <groups>${groups}</groups>
                 </environmentVariables>
                 <suiteXmlFiles>
                     <suiteXmlFile>TestSuiteRunner.xml</suiteXmlFile>

@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 
 public class TestD extends TestBase {
 
-    @Test
+    @Test(groups = {"web"})
     public void TC001(){
         System.out.println("Test D -- TC001");
         driver().get("https://amazon.co.uk");

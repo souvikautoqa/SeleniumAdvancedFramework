@@ -26,6 +26,15 @@ public class TestRunnerXMLGenerator implements IAlterSuiteListener {
         //Add any parameters that you want to set to the Test.
         xmlTest.setParameters(testngParams);
 
+        try{
+            if(!System.getenv("groups").equals("")){
+                List<String> groupList = Arrays.asList(System.getenv("groups").split(","));
+                for(String group : groupList){
+                    xmlTest.addIncludedGroup(group);
+                }
+            }
+        }catch(Exception e){ }
+
         //Getting all Test Classes of Type TestBase
         Reflections reflections = new Reflections("tests");
         Set<Class<? extends TestBase>> classes = reflections.getSubTypesOf(TestBase.class);
@@ -36,4 +45,5 @@ public class TestRunnerXMLGenerator implements IAlterSuiteListener {
         xmlTest.setXmlClasses(listTestClasses);
         suite.setParallel(XmlSuite.ParallelMode.CLASSES);
     }
+
 }

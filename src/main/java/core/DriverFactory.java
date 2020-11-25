@@ -18,13 +18,18 @@ public class DriverFactory {
         try{
             String browser = TestConfig.getBrowser();
             if(browser.equalsIgnoreCase("chrome")){
+                System.setProperty("webdriver.chrome.driver","C:\\drivers\\chromedriver.exe");
                 driver = new ChromeDriver();
             }else if(browser.equalsIgnoreCase("firefox")){
+                System.setProperty("webdriver.gecko.driver","C:\\drivers\\geckodriver.exe");
                 driver = new FirefoxDriver();
             }
             driver.manage().timeouts().implicitlyWait(Long.parseLong(TestConfig.getProperty("pageLoadTimeOut")), TimeUnit.SECONDS);
             driver.manage().timeouts().implicitlyWait(Long.parseLong(TestConfig.getProperty("implicitWait")), TimeUnit.SECONDS);
-            // TO DO -- Set Window Size
+            driver.manage().window().getSize();
+
+            driver.manage().window().maximize();
+            //driver.manage().window().setSize( new Dimension(1600,900));
         }catch (Exception e){
             // Setup Log
             e.printStackTrace();
