@@ -37,11 +37,32 @@ public class DriverFactory {
         return driver;
     }
 
-    public WebDriver getRemoteWebDriver(){
+    public WebDriver getRemoteWebDriverDocker(){
         try{
             String browser = TestConfig.getBrowser();
             DesiredCapabilities desiredCapabilities = null;
             URL url = new URL("http://172.19.0.3:4444/wd/hub");
+            if(browser.equalsIgnoreCase("chrome")){
+                desiredCapabilities = DesiredCapabilities.chrome();
+            }else if(browser.equalsIgnoreCase("firefox")){
+                desiredCapabilities = DesiredCapabilities.firefox();
+            }
+            remoteWebDriver = new RemoteWebDriver(url,desiredCapabilities);
+            remoteWebDriver.manage().timeouts().implicitlyWait(Long.parseLong(TestConfig.getProperty("pageLoadTimeOut")), TimeUnit.SECONDS);
+            remoteWebDriver.manage().timeouts().implicitlyWait(Long.parseLong(TestConfig.getProperty("implicitWait")), TimeUnit.SECONDS);
+            // TO DO -- Set Window Size
+        }catch (Exception e){
+            // Setup Log
+            e.printStackTrace();
+        }
+        return remoteWebDriver;
+    }
+    
+    public WebDriver getRemoteWebDriver(){
+        try{
+            String browser = TestConfig.getBrowser();
+            DesiredCapabilities desiredCapabilities = null;
+            URL url = new URL("http://127.0.0.1:4444/wd/hub");
             if(browser.equalsIgnoreCase("chrome")){
                 desiredCapabilities = DesiredCapabilities.chrome();
             }else if(browser.equalsIgnoreCase("firefox")){
