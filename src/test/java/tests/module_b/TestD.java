@@ -11,7 +11,7 @@ public class TestD extends TestBase {
         driver().get("https://amazon.co.uk");
     }
 
-    @Test
+    @Test(groups = {"mobile"})
     public void TC002(){
         System.out.println("Test D -- TC002");
         driver().get("https://amazon.co.uk");
