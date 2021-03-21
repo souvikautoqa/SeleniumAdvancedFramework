@@ -52,6 +52,7 @@
             <version>3.0.0-M4</version>
             <configuration>
                 <environmentVariables>
+                    <hub>${hub}</hub>
                     <env>${env}</env>
                     <browser>${browser}</browser>
                     <runtype>${runtype}</runtype>

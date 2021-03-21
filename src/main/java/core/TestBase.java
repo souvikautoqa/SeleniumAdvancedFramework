@@ -30,7 +30,7 @@ public class TestBase {
         }else if(System.getenv("runtype").equals("remote")){
             driver = driverFactory.getRemoteWebDriver();
         }else if(System.getenv("runtype").equals("docker")){
-            driver = driverFactory.getRemoteWebDriverDocker();
+            driver = driverFactory.getRemoteWebDriverDocker(System.getenv("hub"));
         }
     }
 
