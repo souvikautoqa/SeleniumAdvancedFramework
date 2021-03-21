@@ -27,8 +27,10 @@ public class TestRunnerXMLGenerator implements IAlterSuiteListener {
         xmlTest.setParameters(testngParams);
 
         try{
-            if(!System.getenv("groups").equals("")){
-                List<String> groupList = Arrays.asList(System.getenv("groups").split(","));
+            String groups = System.getenv("groups");
+            if(!groups.equals("")){
+                if(!groups.contains(",")){ groups = groups+",";}
+                List<String> groupList = Arrays.asList(groups.split(","));
                 for(String group : groupList){
                     xmlTest.addIncludedGroup(group);
                 }
