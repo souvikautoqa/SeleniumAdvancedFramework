@@ -19,12 +19,13 @@ public class TestRunnerXMLGenerator implements IAlterSuiteListener {
         XmlTest xmlTest = new XmlTest(suite);
         xmlTest.setName("Tests");
 
-        Map<String,String> testngParams = new HashMap<>();
-        testngParams.put("browser",TestConfig.getBrowser());
-        testngParams.put("env",TestConfig.getEnv());
+
+//       Map<String,String> testngParams = new HashMap<>();
+//        testngParams.put("browser",TestConfig.getBrowser());
+//        testngParams.put("env",TestConfig.getEnv());
 
         //Add any parameters that you want to set to the Test.
-        xmlTest.setParameters(testngParams);
+ //       xmlTest.setParameters(testngParams);
 
         try{
             String groups = System.getenv("groups");
