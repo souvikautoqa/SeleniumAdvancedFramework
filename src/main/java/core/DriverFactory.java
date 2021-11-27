@@ -18,7 +18,7 @@ public class DriverFactory {
         try{
             String browser = TestConfig.getBrowser();
             if(browser.equalsIgnoreCase("chrome")){
-                System.setProperty("webdriver.chrome.driver","C:\\drivers\\chromedriver.exe");
+                System.setProperty("webdriver.chrome.driver","C:\\devwork\\drivers\\chromedriver\\chromedriver.exe");
                 driver = new ChromeDriver();
             }else if(browser.equalsIgnoreCase("firefox")){
                 System.setProperty("webdriver.gecko.driver","C:\\drivers\\geckodriver.exe");

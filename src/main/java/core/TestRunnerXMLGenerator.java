@@ -15,10 +15,9 @@ public class TestRunnerXMLGenerator implements IAlterSuiteListener {
     @Override
     public void alter(List suites) {
         XmlSuite suite = (XmlSuite) suites.get(0);
-        List<XmlClass> listTestClasses = new ArrayList<XmlClass>();
         XmlTest xmlTest = new XmlTest(suite);
         xmlTest.setName("Tests");
-
+        List<XmlClass> listTestClasses = new ArrayList<XmlClass>();
 
 //       Map<String,String> testngParams = new HashMap<>();
 //        testngParams.put("browser",TestConfig.getBrowser());
