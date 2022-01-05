@@ -44,7 +44,6 @@ public class DriverFactory {
             String browser = TestConfig.getBrowser();
             DesiredCapabilities desiredCapabilities = null;
             ImmutableCapabilities capabilities = null;
-
             URL url = new URL("http://"+hub_ip+":4444");
 
             if(browser.equalsIgnoreCase("chrome")){
@@ -70,7 +69,7 @@ public class DriverFactory {
             String browser = TestConfig.getBrowser();
             DesiredCapabilities desiredCapabilities = null;
             ImmutableCapabilities capabilities = null;
-            URL url = new URL("http://127.0.0.1:4445");
+            URL url = new URL("http://127.0.0.1:4444");
             if(browser.equalsIgnoreCase("chrome")){
                 capabilities = new ImmutableCapabilities("browserName", "chrome");
                 //desiredCapabilities = DesiredCapabilities.chrome();
