@@ -4,9 +4,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.ImmutableCapabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -43,24 +41,17 @@ public class DriverFactory {
     public WebDriver getRemoteWebDriverDocker(String hub_ip){
         try{
             String browser = TestConfig.getBrowser();
-            DesiredCapabilities desiredCapabilities = null;
             ImmutableCapabilities capabilities = null;
             URL url = new URL("http://"+hub_ip+":4444");
 
             if(browser.equalsIgnoreCase("chrome")){
+                WebDriverManager.chromedriver().setup();
                 capabilities = new ImmutableCapabilities("browserName", "chrome");
-                ChromeOptions options = new ChromeOptions();
-                options.merge(capabilities);
-                remoteWebDriver = new RemoteWebDriver(url,options);
-                //desiredCapabilities = DesiredCapabilities.;
             }else if(browser.equalsIgnoreCase("firefox")){
+                WebDriverManager.firefoxdriver().setup();
                 capabilities = new ImmutableCapabilities("browserName", "firefox");
-                FirefoxOptions options = new FirefoxOptions();
-                options.merge(capabilities);
-                remoteWebDriver = new RemoteWebDriver(url,options);
-                //desiredCapabilities = DesiredCapabilities.firefox();
             }
-
+            remoteWebDriver = new RemoteWebDriver(url,capabilities);
             remoteWebDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(Long.parseLong(TestConfig.getProperty("pageLoadTimeOut"))));
             remoteWebDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(Long.parseLong(TestConfig.getProperty("implicitWait"))));
             // TO DO -- Set Window Size
@@ -74,17 +65,12 @@ public class DriverFactory {
     public WebDriver getRemoteWebDriver(){
         try{
             String browser = TestConfig.getBrowser();
-            DesiredCapabilities desiredCapabilities = null;
             ImmutableCapabilities capabilities = null;
             URL url = new URL("http://127.0.0.1:4444");
             if(browser.equalsIgnoreCase("chrome")){
-                WebDriverManager.chromedriver().setup();
                 capabilities = new ImmutableCapabilities("browserName", "chrome");
-                //desiredCapabilities = DesiredCapabilities.chrome();
             }else if(browser.equalsIgnoreCase("firefox")){
-                WebDriverManager.firefoxdriver().setup();
                 capabilities = new ImmutableCapabilities("browserName", "firefox");
-                //desiredCapabilities = DesiredCapabilities.firefox();
             }
             remoteWebDriver = new RemoteWebDriver(url,capabilities);
             remoteWebDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(Long.parseLong(TestConfig.getProperty("pageLoadTimeOut"))));
