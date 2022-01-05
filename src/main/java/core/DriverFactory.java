@@ -1,5 +1,6 @@
 package core;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.ImmutableCapabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -20,16 +21,14 @@ public class DriverFactory {
         try{
             String browser = TestConfig.getBrowser();
             if(browser.equalsIgnoreCase("chrome")){
-                System.setProperty("webdriver.chrome.driver","C:\\devwork\\drivers\\chromedriver\\chromedriver.exe");
+                WebDriverManager.chromedriver().setup();
                 driver = new ChromeDriver();
             }else if(browser.equalsIgnoreCase("firefox")){
-                System.setProperty("webdriver.gecko.driver","C:\\drivers\\geckodriver.exe");
+                WebDriverManager.firefoxdriver().setup();
                 driver = new FirefoxDriver();
             }
-            driver.manage().timeouts().implicitlyWait(Long.parseLong(TestConfig.getProperty("pageLoadTimeOut")), TimeUnit.SECONDS);
-            driver.manage().timeouts().implicitlyWait(Long.parseLong(TestConfig.getProperty("implicitWait")), TimeUnit.SECONDS);
-            driver.manage().window().getSize();
-
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(Long.parseLong(TestConfig.getProperty("pageLoadTimeOut"))));
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(Long.parseLong(TestConfig.getProperty("implicitWait"))));
             driver.manage().window().maximize();
             //driver.manage().window().setSize( new Dimension(1600,900));
         }catch (Exception e){
@@ -47,9 +46,11 @@ public class DriverFactory {
             URL url = new URL("http://"+hub_ip+":4444");
 
             if(browser.equalsIgnoreCase("chrome")){
+                WebDriverManager.chromedriver().setup();
                 capabilities = new ImmutableCapabilities("browserName", "chrome");
                 //desiredCapabilities = DesiredCapabilities.;
             }else if(browser.equalsIgnoreCase("firefox")){
+                WebDriverManager.firefoxdriver().setup();
                 capabilities = new ImmutableCapabilities("browserName", "firefox");
                 //desiredCapabilities = DesiredCapabilities.firefox();
             }
@@ -71,9 +72,11 @@ public class DriverFactory {
             ImmutableCapabilities capabilities = null;
             URL url = new URL("http://127.0.0.1:4444");
             if(browser.equalsIgnoreCase("chrome")){
+                WebDriverManager.chromedriver().setup();
                 capabilities = new ImmutableCapabilities("browserName", "chrome");
                 //desiredCapabilities = DesiredCapabilities.chrome();
             }else if(browser.equalsIgnoreCase("firefox")){
+                WebDriverManager.firefoxdriver().setup();
                 capabilities = new ImmutableCapabilities("browserName", "firefox");
                 //desiredCapabilities = DesiredCapabilities.firefox();
             }
