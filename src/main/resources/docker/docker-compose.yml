@@ -14,16 +14,14 @@ services:
 
   selenium-hub:
     restart: always
-    image: selenium/hub:latest  # Update this with the latest version
+    image: selenium/hub:4.10.0-20230607
     container_name: selenium-hub
     ports:
-      - "4442:4442"
-      - "4443:4443"
       - "4444:4444"
 
   #selenium-chrome
   selenium-chrome:
-    image: selenium/node-chrome:latest  # Update this with the latest version
+    image: selenium/node-chrome:4.10.0-20230607
     shm_size: 2gb
     ports:
       - "5900"
@@ -37,7 +35,7 @@ services:
 
   #selenium-firefox
   selenium-firefox:
-    image: selenium/node-firefox:latest  # Update this with the latest version
+    image: selenium/node-firefox:4.10.0-20230607
     shm_size: 2gb
     ports:
       - "5900"
@@ -51,7 +49,7 @@ services:
 
   #selenium-edge
   selenium-edge:
-    image: selenium/node-edge:latest  # Update this with the latest version
+    image: selenium/node-edge:4.10.0-20230607
     shm_size: 2gb
     ports:
       - "5900"
